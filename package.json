@@ -1,0 +1,13 @@
+{
+  "name": "wacm_group13",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "./start.sh",
+    "stop": "./stop.sh"
+  },
+  "private": true,
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

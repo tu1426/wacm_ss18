@@ -1,0 +1,9 @@
+{
+  "port" : 8080,
+  "mongo_host": "mongodb",
+  "mongo_port": 27017,
+  "mongo_db_name": "wacmDB",
+  "app_name": "WACM_Group13",
+  "secret": "WACM_JWT_SECRET",
+  "jwt_expiry_sec": 86400
+}

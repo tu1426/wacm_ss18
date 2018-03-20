@@ -1,0 +1,15 @@
+version: '3'
+services:
+    webapp:
+        image: web
+        build:
+          context: .
+          dockerfile: Dockerfile.web
+        expose:
+            - "8080"
+        ports:
+            - "8080:8080"
+    mongodb:
+        image: mongo:3.6.2
+        ports:
+            - "27017:27017"
