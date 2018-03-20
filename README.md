@@ -1,5 +1,7 @@
 # wacm_ss18
 
+## Server starts on localhost:8080
+
 ## Start webapp with uploaded images:
 `docker-compose up`
 
