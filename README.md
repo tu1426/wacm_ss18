@@ -1,6 +1,7 @@
 # wacm_ss18
 
-## Server starts on localhost:8080
+- Server api starts on localhost:8080/api
+- Frontend starts on localhost:8080
 
 ## Start webapp with uploaded images:
 `docker-compose up`
@@ -17,6 +18,7 @@ To stop docker-compose started with `./start.sh` or `npm start` use `./stop.sh` 
 
 ## Development environment
 Start local MongoDB instance localhost:27017, go to /webapp directory and run `npm run nodemon-dev-server` to start the server and watch backend files and run `npm run build-watch` to watch the frontend files while developing.
+- Attention: DB creates a folder /data/db in directory of docker-compose file called to save states between container restarts!
 
 ## Technology stack
 For this exercise we chose MondoDB for database purposes, Node.js for backend development and Vue.js for frontend development.

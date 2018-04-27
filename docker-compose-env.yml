@@ -1,11 +1,5 @@
 version: '3'
 services:
-    webapp:
-        image: ebuccaneer/waecm-2018-group-13-bsp-1-web
-        expose:
-            - "8080"
-        ports:
-            - "8080:8080"
     mongodb:
         image: mongo:3.6.2
         ports:

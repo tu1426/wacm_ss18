@@ -106,7 +106,7 @@ app.use(function(err, req, res, next) {
     return res.status(400).json('Ups...something went wrong! There was a bad JSON in the request.');
   } else if(err && err.name === 'Error' && err.message){
     console.error('Error occured: {}', err.message);
-    return res.status(400).json('Ups...something went wrong!');
+    return res.status(400).json({success: false, message: err.message});
   } else{
     next();
   }

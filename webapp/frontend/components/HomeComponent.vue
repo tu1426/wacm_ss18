@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>Home</h1>
+        <h2>Welcome, you are logged in!</h2>
         <div class="alert alert-danger" v-if="error">
             <p>{{ error }}</p>
         </div>
@@ -12,6 +13,8 @@
 
 
 <script>
+  import UserService from '../services/UserService';
+  import {router} from '../main';
   import CounterService from '../services/CounterService';
 
   export default {
@@ -24,6 +27,12 @@
 
     created() {
         this.getCounter();
+    },
+
+    // TODO: mounted...
+
+    beforeMount: function () {
+      if(!UserService.isAuthenticated()) router.push('/login');
     },
 
     methods: {

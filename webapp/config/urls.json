@@ -2,5 +2,6 @@
   "api": "/api",
   "user": "/user",
   "user_login": "/login",
+  "user_register": "/register",
   "counter": "/counter"
 }

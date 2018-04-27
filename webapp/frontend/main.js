@@ -11,6 +11,9 @@ Vue.use(VueLocalStorage);
 import App from './App.vue';
 import HomeComponent from './components/HomeComponent.vue';
 import LoginComponent from './components/LoginComponent.vue';
+import DataComponent from './components/DataComponent.vue';
+import NewDataComponent from './components/NewDataComponent.vue';
+import RegisterComponent from './components/RegisterComponent.vue';
 import UserService from './services/UserService';
 
 const routes = [
@@ -19,28 +22,64 @@ const routes = [
       redirect: '/home'
   },
   {
-      name: 'HomeComponent',
-      path: '/home',
-      component: HomeComponent,
-      beforeRouteEnter (to, from, next) {
-        if(UserService.isAuthenticated()){
-          next();
-        } else{
-          next('/login');
-        }
+    name: 'HomeComponent',
+    path: '/home',
+    component: HomeComponent,
+    beforeRouteUpdate (to, from, next) {
+      if(!UserService.isAuthenticated()){
+        next('/login');
+      } else{
+        next();
       }
+    }
   },
   {
-      name: 'LoginComponent',
-      path: '/login',
-      component: LoginComponent,
-      beforeRouteUpdate (to, from, next) {
-        if(UserService.isAuthenticated()){
-          next('/home');
-        } else{
-          next();
-        }
+    name: 'LoginComponent',
+    path: '/login',
+    component: LoginComponent,
+    beforeRouteUpdate (to, from, next) {
+      if(UserService.isAuthenticated()){
+        next('/home');
+      } else{
+        next();
       }
+    }
+  },
+  {
+    name: 'RegisterComponent',
+    path: '/register',
+    component: RegisterComponent,
+    beforeRouteUpdate (to, from, next) {
+      if(UserService.isAuthenticated()){
+        next('/home');
+      } else{
+        next();
+      }
+    }
+  },
+  {
+    name: 'DataComponent',
+    path: '/data',
+    component: DataComponent,
+    beforeRouteUpdate (to, from, next) {
+      if(!UserService.isAuthenticated()){
+        next('/login');
+      } else{
+        next();
+      }
+    }
+  },
+  {
+    name: 'NewDataComponent',
+    path: '/newData',
+    component: NewDataComponent,
+    beforeRouteUpdate (to, from, next) {
+      if(!UserService.isAuthenticated()){
+        next('/login');
+      } else{
+        next();
+      }
+    }
   }
 ];
 

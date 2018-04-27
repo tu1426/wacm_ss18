@@ -5,16 +5,20 @@
             <p>{{ error }}</p>
         </div>
         <div class="form-group">
+            <label for="usernameInput">Email</label>
             <input
+                    id="usernameInput"
                     type="text"
                     class="form-control"
-                    placeholder="Enter your username"
+                    placeholder="Enter your email"
                     v-model="credentials.username"
                     @keyup.enter="login()"
             >
         </div>
         <div class="form-group">
+            <label for="passwordInput">Password</label>
             <input
+                    id="passwordInput"
                     type="password"
                     class="form-control"
                     placeholder="Enter your password"
@@ -22,7 +26,9 @@
                     @keyup.enter="login()"
             >
         </div>
-        <button class="btn btn-primary" @click="login()">Access</button>
+        <button class="btn btn-primary" @click="login()">Login</button>
+        <br>
+        <br>
     </div>
 </template>
 
@@ -39,6 +45,7 @@
           username: '',
           password: ''
         },
+
         error: ''
       }
     },

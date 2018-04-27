@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "scripts": {
     "start": "./start.sh",
-    "stop": "./stop.sh"
+    "stop": "./stop.sh",
+    "start_environment": "docker-compose -f docker-compose-env.yml up",
+    "stop_environment": "docker-compose -f docker-compose-env.yml down"
   },
   "private": true,
   "dependencies": {
+    "bcrypt": "^2.0.1",
+    "validator": "^9.4.1"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

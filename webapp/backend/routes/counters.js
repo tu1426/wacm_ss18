@@ -26,9 +26,9 @@ let requestParser = new NodeRequestParser(requestParserOptions);
 
 router.post('/', passport.authenticate('jwt', { session: false}), (req, res, next) => {
   Counter.findOne({}, function(err, counter){
-    if(err || !counter) return next('counter_not_found_error');
+    if(err || !counter) return next(new Error('counter_not_found_error'));
     counter.increment(function (err, newCounter) {
-      if(err || !counter) return next('counter_increment_error');
+      if(err || !counter) return next(new Error('counter_increment_error'));
       res.json({success: true, count: newCounter.count});
     });
   });
@@ -39,7 +39,7 @@ router.get('/', passport.authenticate('jwt', { session: false}), (req, res, next
     if(err || !counter){
       let newCounter = new Counter();
       newCounter.save(function (err, savedCounter) {
-        if(err || !savedCounter) return next('counter_creation_problem_error');
+        if(err || !savedCounter) return next(new Error('counter_creation_problem_error'));
         res.json({success: true, count: savedCounter.count});
       });
     } else{

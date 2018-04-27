@@ -1,7 +1,8 @@
 let JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt,
     fs = require("fs"),
-    CONFIG = JSON.parse(fs.readFileSync(process.env['CONFIG_FILE']));
+    CONFIG = JSON.parse(fs.readFileSync(process.env['CONFIG_FILE'])),
+    User = require('../models/User');
 
 module.exports = function(passport) {
   let opts = {};
@@ -13,7 +14,13 @@ module.exports = function(passport) {
     if(decoded.id === 'admin'){
       done(null, true);
     } else{
-      done(null, false);
+      User.findOne({_id: decoded.id}, function(err, user){
+        if(err || !user){
+          done(err, false);
+        } else{
+          done(null, true);
+        }
+      });
     }
   }));
 };
