@@ -8,6 +8,8 @@
         <h2 id="counter">Counter is: {{counter}}</h2>
         <button class="btn btn-primary" @click="getCounter()">Get</button>
         <button class="btn btn-primary" @click="incrementCounter()">Increment</button>
+        <br>
+        <br>
     </div>
 </template>
 
@@ -28,8 +30,6 @@
     created() {
         this.getCounter();
     },
-
-    // TODO: mounted...
 
     beforeMount: function () {
       if(!UserService.isAuthenticated()) router.push('/login');

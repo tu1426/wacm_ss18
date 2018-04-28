@@ -5,6 +5,8 @@
             <p>{{ error }}</p>
         </div>
         <button class="btn btn-primary" @click="createNew()"><span class="glyphicon glyphicon-plus"></span></button>
+        <br>
+        <br>
     </div>
 </template>
 
@@ -26,26 +28,18 @@
       this.getData();
     },
 
-    // TODO: mounted...
-
     beforeMount: function () {
       if(!UserService.isAuthenticated()) router.push('/login');
+      if(UserService.isResearchFacility()) router.push('/home');
     },
 
     methods: {
       async getData() {
         try {
-          let response = await DataService.getAllData();
-          // TODO: enable after implemented
-          /*if (!!response.data.success) {
-            this.data = response.data.data;
-          } else {
-            console.error('Response error message: ' + response.data.message);
-            this.error = response.data.message;
-          }*/
+          this.data = await DataService.getData();
         } catch (e){
           console.error(e);
-          this.error = e.message;
+          this.error = e;
         }
       },
       createNew() {

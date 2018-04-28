@@ -51,6 +51,10 @@ let translations = {
     en: 'Register',
     de: 'Registrieren'
   },
+  registerRFLabel:{
+    en: 'Register as Research Facility',
+    de: 'Registrieren als Forschungseinrichtung'
+  },
   resetLabel:{
     en: 'Reset',
     de: 'Zurücksetzen'
@@ -102,6 +106,14 @@ let translations = {
   birthday_not_set_error:{
     en: 'Birthday not set.',
     de: 'Geburtstag fehlt.'
+  },
+  register_state_missing_error:{
+    en: 'No user state given when registering.',
+    de: 'Es wurde kein Benutzer Status angegeben.'
+  },
+  rf_registered_successfully:{
+    en: 'Your research facility was registered successfully, please await activation.',
+    de: 'Ihre Forschungseinrichtung wurde erfolgreich angelegt, bitte Aktivierung abwarten.'
   }
 };
 

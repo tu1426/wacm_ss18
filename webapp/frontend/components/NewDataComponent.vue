@@ -21,10 +21,9 @@
       }
     },
 
-    // TODO: mounted...
-
     beforeMount: function () {
       if(!UserService.isAuthenticated()) router.push('/login');
+      if(UserService.isResearchFacility()) router.push('/home');
     },
 
     methods: {

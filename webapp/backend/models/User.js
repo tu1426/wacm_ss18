@@ -10,9 +10,11 @@ let mongoose = require('mongoose'),
 let schema = new Schema({
   email: {type: String, unique: true, required: true},
   password: {type: String},
-  name: {type: String, required: true},
-  birthdate: {type: Date, required: true},
-  gender: {type: String, required: true},
+  name: {type: String, required: false},
+  birthdate: {type: Date, required: false},
+  gender: {type: String, required: false},
+  state: {type: String, required: true},
+  isEnabled: {type: Boolean, required: true}
 });
 
 schema.pre('save', function(next){

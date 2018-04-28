@@ -15,8 +15,18 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li v-if="!isAuthenticated()" v-bind:class="{ active: isActiveRoute('LoginComponent') }"><router-link :to="{ path: '/login' }">Login</router-link></li>
-                        <li v-if="!isAuthenticated()" v-bind:class="{ active: isActiveRoute('RegisterComponent') }"><router-link :to="{ path: '/register' }">Register</router-link></li>
-                        <li v-if="isAuthenticated()" v-bind:class="{ active: isActiveRoute('DataComponent') }"><router-link :to="{ path: '/data' }">Data</router-link></li>
+
+                        <ul v-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/register">as User</a></li>
+                                    <li><a href="/registerResearch">as Research Facility</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <li v-if="isAuthenticated() && !isResearchFacility()" v-bind:class="{ active: isActiveRoute('DataComponent') }"><router-link :to="{ path: '/data' }">Data</router-link></li>
                     </ul>
                     <ul v-if="isAuthenticated()" class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -42,6 +52,10 @@
     methods: {
       isAuthenticated(){
         return UserService.isAuthenticated();
+      },
+
+      isResearchFacility(){
+        return UserService.isResearchFacility();
       },
 
       getUsername(){

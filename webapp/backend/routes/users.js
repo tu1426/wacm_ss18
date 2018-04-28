@@ -36,7 +36,11 @@ router.post(URLS.user_login, (req, res, next) => {
           if(err || !isMatch){
             return res.json({success: false, message: 'Invalid credentials!'});
           } else{
-            res.json({success: true, jwt: user.toAuthJSON().token, email: user.email});
+            if(user.isEnabled){
+              res.json({success: true, jwt: user.toAuthJSON().token, email: user.email, state: user.state});
+            } else{
+              res.json({success: false, message: 'Not yet activated!'});
+            }
           }
         })
       }
@@ -45,31 +49,58 @@ router.post(URLS.user_login, (req, res, next) => {
 });
 
 router.post(URLS.user_register, (req, res, next) => {
-  console.log(req.body);
-  let data = requestParser.parseSync(req, ['B*email', 'B*password', 'B*name', 'Bbirthdate', 'B*gender']);
+  let data = requestParser.parseSync(req, ['B*email', 'B*password', 'B*name?', 'Bbirthdate?', 'B*gender?', 'B*state']);
   if(!data) return next(new Error('register_required_data_missing_error'));
+  if(!data.body.state) return next(new Error('register_state_missing_error'));
   if(!validator.isEmail(data.body.email)) return res.json({success: false, message: 'email_no_email_error'});
-  if(validator.isBefore(new Date().toString(), data.body.birthdate)) return res.json({success: false, message: 'birthday_after_today_error'});
-  if(data.body.gender === 'männlich') data.body.gender = 'male';
-  if(data.body.gender === 'weiblich') data.body.gender = 'female';
-  if(data.body.gender !== 'male' && data.body.gender !== 'female') return res.json({success: false, message: 'gender_select_error'});
-  User.findOne({email: data.body.email}, function(err, user){
-    if(err || !user){
-      let newUser = new User({
-        email: data.body.email,
-        password: data.body.password,
-        name: data.body.name,
-        birthdate: data.body.birthdate,
-        gender: data.body.gender
-      });
-      newUser.save(function (err, savedUser) {
-        if(err || !savedUser) return next(new Error('user_creation_problem_error'));
-        res.json({success: true, jwt: savedUser.toAuthJSON().token, email: savedUser.email});
-      });
-    } else{
-      res.json({success: false, message: 'user_already_registered_error'});
-    }
-  });
+  if(data.body.state === 'USER') {
+    if (validator.isBefore(new Date().toString(), data.body.birthdate)) return res.json({
+      success: false,
+      message: 'birthday_after_today_error'
+    });
+    if (data.body.gender === 'männlich') data.body.gender = 'male';
+    if (data.body.gender === 'weiblich') data.body.gender = 'female';
+    if (data.body.gender !== 'male' && data.body.gender !== 'female') return res.json({
+      success: false,
+      message: 'gender_select_error'
+    });
+    User.findOne({email: data.body.email}, function (err, user) {
+      if (err || !user) {
+        let newUser = new User({
+          email: data.body.email,
+          password: data.body.password,
+          name: data.body.name,
+          birthdate: data.body.birthdate,
+          gender: data.body.gender,
+          state: 'USER',
+          isEnabled: true
+        });
+        newUser.save(function (err, savedUser) {
+          if (err || !savedUser) return next(new Error('user_creation_problem_error'));
+          res.json({success: true, jwt: savedUser.toAuthJSON().token, email: savedUser.email, state: savedUser.state});
+        });
+      } else {
+        res.json({success: false, message: 'user_already_registered_error'});
+      }
+    });
+  } else{
+    User.findOne({email: data.body.email}, function (err, user) {
+      if (err || !user) {
+        let newUser = new User({
+          email: data.body.email,
+          password: data.body.password,
+          state: 'RF',
+          isEnabled: false
+        });
+        newUser.save(function (err, savedUser) {
+          if (err || !savedUser) return next(new Error('user_creation_problem_error'));
+          res.json({success: true, message: 'rf_registered_successfully'});
+        });
+      } else {
+        res.json({success: false, message: 'user_already_registered_error'});
+      }
+    });
+  }
 });
 
 module.exports = router;

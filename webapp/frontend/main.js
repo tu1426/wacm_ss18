@@ -14,6 +14,7 @@ import LoginComponent from './components/LoginComponent.vue';
 import DataComponent from './components/DataComponent.vue';
 import NewDataComponent from './components/NewDataComponent.vue';
 import RegisterComponent from './components/RegisterComponent.vue';
+import ResearchRegisterComponent from './components/ResearchRegisterComponent.vue';
 import UserService from './services/UserService';
 
 const routes = [
@@ -49,6 +50,18 @@ const routes = [
     name: 'RegisterComponent',
     path: '/register',
     component: RegisterComponent,
+    beforeRouteUpdate (to, from, next) {
+      if(UserService.isAuthenticated()){
+        next('/home');
+      } else{
+        next();
+      }
+    }
+  },
+  {
+    name: 'ResearchRegisterComponent',
+    path: '/registerResearch',
+    component: ResearchRegisterComponent,
     beforeRouteUpdate (to, from, next) {
       if(UserService.isAuthenticated()){
         next('/home');

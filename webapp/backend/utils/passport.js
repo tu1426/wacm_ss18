@@ -18,7 +18,11 @@ module.exports = function(passport) {
         if(err || !user){
           done(err, false);
         } else{
-          done(null, true);
+          if(user.isEnabled) {
+            done(null, true);
+          } else{
+            done(err, false);
+          }
         }
       });
     }

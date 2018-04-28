@@ -8,6 +8,7 @@ process.env.TZ = 'Europe/Vienna';
 let express = require('express'),
     path = require('path'),
     http = require('http'),
+    https = require('https'),
     bodyParser = require('body-parser'),
     fs = require("fs"),
     morgan = require('morgan'),
@@ -83,6 +84,8 @@ connectToMongo(process.env['MONGO_CONNECTION_STRING']);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.all('*', ensureSecure);
+
 // point static path to dist
 app.use(express.static(path.join(__dirname, './frontend')));
 
@@ -90,9 +93,11 @@ app.use(express.static(path.join(__dirname, './frontend')));
 // get our API routes
 const users = require('./backend/routes/users');
 const counters = require('./backend/routes/counters');
+const data = require('./backend/routes/data');
 // apply API routes
 app.use(URLS.api + URLS.user, users);
 app.use(URLS.api + URLS.counter, counters);
+app.use(URLS.api + URLS.data, data);
 
 // catch all other routes and return the index file
 app.get('*', (req, res) => {
@@ -112,10 +117,24 @@ app.use(function(err, req, res, next) {
   }
 });
 
+const serverConfig = {
+  key: fs.readFileSync('./backend/resources/certs/key.pem'),
+  cert: fs.readFileSync('./backend/resources/certs/cert.pem')
+};
+
 // start servers
 http.createServer(app).listen(CONFIG.port);
+https.createServer(serverConfig, app).listen(CONFIG.secure_port);
 
-console.log('#### wacm_group13 API running on localhost:' + CONFIG.port +'/api/ ####');
+function ensureSecure(req, res, next){
+  if(req.secure){
+    return next();
+  }
+  res.redirect('https://'+req.hostname+':' + CONFIG.secure_port + req.url);
+}
+
+
+console.log('#### wacm_group13 API running on https://localhost:' + CONFIG.secure_port +'/api/ ####');
 
 // ####################################################################################################################
 

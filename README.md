@@ -22,3 +22,8 @@ Start local MongoDB instance localhost:27017, go to /webapp directory and run `n
 
 ## Technology stack
 For this exercise we chose MondoDB for database purposes, Node.js for backend development and Vue.js for frontend development.
+
+
+## Remarks
+- it is still possible to login with email: user and password: password for admin user, this could be easily disabled though
+- a research facility can be registered via the frontend ui, but has to be enabled in the database before login (set isEnabled flag to true)

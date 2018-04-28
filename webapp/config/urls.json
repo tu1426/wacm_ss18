@@ -3,5 +3,6 @@
   "user": "/user",
   "user_login": "/login",
   "user_register": "/register",
+  "data": "/data",
   "counter": "/counter"
 }
