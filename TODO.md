@@ -8,5 +8,5 @@
 - [ X ] https for server
 - [  ] database transactions (maybe not possible with mongo)
 - [  ] api documentation (i.e. with jsdoc)
-- [  ] B:
-    - [  ] tasks for exercise B
+- [ X ] B:
+    - [ X ] tasks for exercise B
