@@ -7,8 +7,10 @@ services:
           dockerfile: Dockerfile.web
         expose:
             - "8080"
+            - "8443"
         ports:
             - "8080:8080"
+            - "8443:8443"
     mongodb:
         image: mongo:3.6.2
         ports:
