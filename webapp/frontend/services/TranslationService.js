@@ -27,6 +27,46 @@ let translations = {
     en: 'Name',
     de: 'Name'
   },
+    titleInput: {
+        en: 'Title',
+        de: 'Titel'
+    },
+    data:{
+      en: 'Health data',
+      de: 'Gesundheitsdaten'
+    },
+    imgInput: {
+        en: 'Image',
+        de: 'Bild'
+    },
+    tagInput: {
+        en: 'Tags',
+        de: 'Tags'
+    },
+    descInput: {
+        en: 'Description',
+        de: 'Beschreibung'
+    },
+    titleInputPH: {
+        en: 'Enter the title of the data',
+        de: 'Titel der Daten eingeben'
+    },
+    tagInputPH: {
+        en: 'Enter the tags (comma-separated)',
+        de: 'Tags eingeben (Komma getrennt)'
+    },
+    descInputPH: {
+        en: 'Enter the description',
+        de: 'Beschreibung eingeben'
+    },
+    createDataButton: {
+        en: 'Create Data',
+        de: 'Daten Erstellen'
+    },
+    newDataLabel:{
+      en: 'New Data',
+      de: 'Neue Daten'
+    },
   nameInputPH: {
     en: 'Enter your full name',
     de: 'Bitte vollständigen Namen eingeben'
