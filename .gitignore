@@ -44,8 +44,6 @@ npm-debug.log
 .DS_Store
 Thumbs.db
 
-#Server html backend.docs
-/webapp/docs/html
-
 /data
 /webapp/frontend/dist
+/webapp/docs/html

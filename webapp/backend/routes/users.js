@@ -3,6 +3,7 @@
 /** Express router providing user related routes
  * @module users
  */
+
 let _ = require('lodash'),
     striptags = require('striptags'),
     sanitizer = require('sanitizer'),
@@ -21,6 +22,24 @@ const express = require('express'),
 let requestParserOptions = {disableRegex: true, sanitizeFunction: (property) => sanitizer.sanitize(striptags(property))};
 let requestParser = new NodeRequestParser(requestParserOptions);
 
+
+/**
+ * @typedef {Object} LoginResponse
+ * @property {String} jwt The jwt token for the user
+ * @property {String} email The email of the user
+ * @property {String} state RF or USER, dependent on the state of the user in the database
+ * @property {Boolean} success Indicates if the requested action was successful
+ */
+
+/**
+ * Login function for users.
+ * @function
+ * @name Login
+ * @route {POST} /api/data/newData
+ * @bodyparam {String} username The username of the user
+ * @bodyparam {String} password The password of the user in plaintext
+ * @returns {LoginResponse}
+ */
 router.post(URLS.user_login, (req, res, next) => {
   let data = requestParser.parseSync(req, ['B*username', 'B*password']);
   if(!data) return next(new Error('login_required_data_missing_error'));
@@ -48,6 +67,19 @@ router.post(URLS.user_login, (req, res, next) => {
   }
 });
 
+/**
+ * Register function for users. Returns LoginResponse if USER registers or a simple wrapper message for RF (research facilities)
+ * @function
+ * @name Register
+ * @route {POST} /api/data/newData
+ * @bodyparam {String} email The email (is also username) of the user
+ * @bodyparam {String} password The password of the user in plaintext
+ * @bodyparam {String} name The name of the user
+ * @bodyparam {Date} birthdate The birthdate of the user
+ * @bodyparam {String} gender The gender of the user
+ * @bodyparam {String} state The state of the user
+ * @returns {LoginResponse}
+ */
 router.post(URLS.user_register, (req, res, next) => {
   let data = requestParser.parseSync(req, ['B*email', 'B*password', 'B*name?', 'Bbirthdate?', 'B*gender?', 'B*state']);
   if(!data) return next(new Error('register_required_data_missing_error'));

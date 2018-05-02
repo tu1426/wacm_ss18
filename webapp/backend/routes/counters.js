@@ -3,6 +3,7 @@
 /** Express router providing counter related routes
  * @module counter
  */
+
 let mongoose = require('mongoose'),
   _ = require('lodash'),
   striptags = require('striptags'),
@@ -24,6 +25,21 @@ const express = require('express'),
 let requestParserOptions = {disableRegex: true, sanitizeFunction: (property) => sanitizer.sanitize(striptags(property))};
 let requestParser = new NodeRequestParser(requestParserOptions);
 
+/**
+ * @typedef {Object} CounterResponse
+ * @property {Number} count The actual count
+ * @property {Boolean} success Indicates if the requested action was successful
+ */
+
+/**
+ * Increment and get the current counter value.
+ * @function
+ * @name IncrementCounter
+ * @route {POST} /api/counter/
+ * @authentication This route requires JWT authentication
+ * @headerparam {String} Authorization The jwt token for authorizing the user
+ * @returns {CounterResponse}
+ */
 router.post('/', passport.authenticate('jwt', { session: false}), (req, res, next) => {
   Counter.findOne({}, function(err, counter){
     if(err || !counter) return next(new Error('counter_not_found_error'));
@@ -34,6 +50,15 @@ router.post('/', passport.authenticate('jwt', { session: false}), (req, res, nex
   });
 });
 
+/**
+ * Get the current counter value.
+ * @function
+ * @name GetCounter
+ * @route {GET} /api/counter/
+ * @authentication This route requires JWT authentication
+ * @headerparam {String} Authorization The jwt token for authorizing the user
+ * @returns {CounterResponse}
+ */
 router.get('/', passport.authenticate('jwt', { session: false}), (req, res, next) => {
   Counter.findOne({}, function(err, counter){
     if(err || !counter){

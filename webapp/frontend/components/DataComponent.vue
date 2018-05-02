@@ -5,6 +5,10 @@
             <p>{{ error }}</p>
         </div>
 
+        <button class="btn btn-primary" @click="createNew()"><span class="glyphicon glyphicon-plus"></span></button>
+
+        <br>
+        <br>
         <div id="datas">
             <div v-for="d in data">
                 <div v-if="d.title" class="dataElem">
@@ -20,9 +24,6 @@
             </div>
 
         </div>
-
-        <button class="btn btn-primary" @click="createNew()"><span class="glyphicon glyphicon-plus"></span></button>
-        <br>
         <br>
     </div>
 </template>

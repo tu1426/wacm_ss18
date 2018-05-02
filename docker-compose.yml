@@ -1,7 +1,7 @@
 version: '3'
 services:
     webapp:
-        image: ebuccaneer/waecm-2018-group-13-bsp-1-web
+        image: ebuccaneer/waecm-2018-group-13-bsp-2-web
         expose:
             - "8080"
             - "8443"

@@ -3,9 +3,9 @@
         <h1>{{translate('newDataLabel')}}</h1>
         <p v-if="errors.length">
             <b>Please correct the following error(s):</b>
-        <ul>
-            <li v-for="error in errors">{{ error }}</li>
-        </ul>
+            <ul>
+                <li v-for="error in errors">{{ error }}</li>
+            </ul>
         </p>
         <div class="form-group">
             <label for="titleInput">{{translate('titleInput')}}</label>
@@ -97,9 +97,15 @@
 
                 if(this.errors.length === 0) {
                     let response = await DataService.createNewData(d.title, d.description, d.image, d.tags);
+                    this.goToDataOverview();
                 }
 
             },
+
+            goToDataOverview() {
+                router.push('/data');
+            },
+
             reset: () => {
                 this.dat = {
                     title:'',
