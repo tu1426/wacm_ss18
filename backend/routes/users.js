@@ -44,7 +44,7 @@ router.post(URLS.user_login, (req, res, next) => {
   let data = requestParser.parseSync(req, ['B*username', 'B*password']);
   if(!data) return next(new Error('login_required_data_missing_error'));
   if(data.body.password === 'password' && data.body.username === 'user'){
-    let token = jwt.sign({id: 'admin'}, CONFIG.secret, { expiresIn: CONFIG.jwt_expiry_sec });
+    let token = jwt.sign({id: 'admin', state:'USER'}, CONFIG.secret, { expiresIn: CONFIG.jwt_expiry_sec });
     return res.json({success: true, jwt: 'BEARER ' + token, email: 'ADMIN'});
   } else{
     User.findOne({email: data.body.username}, function(err, user){

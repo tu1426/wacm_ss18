@@ -1,7 +1,7 @@
 FROM node:carbon
 
 WORKDIR /usr/wacm_group13
-COPY ./webapp .
+COPY . .
 RUN yarn install
 
 EXPOSE 3000

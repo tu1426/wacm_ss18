@@ -1,16 +1,16 @@
 # compiled output
-webapp/dist
-webapp/tmp
+/dist
+/tmp
 
 # dependencies
-/webapp/node_modules
+/node_modules
 
 # models
 /db/data
 
 # logs
 npm-debug.log
-/webapp/yarn-error.log
+/yarn-error.log
 
 # IDEs and editors
 /.idea
@@ -28,13 +28,13 @@ npm-debug.log
 !.vscode/extensions.json
 
 # misc
-/webapp/.sass-cache
-/webapp/connect.lock
-/webapp/coverage/*
-/webapp/libpeerconnection.log
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
 /webappnpm-debug.log
 /webapptestem.log
-/webapp/typings
+/typings
 /server/.sass-cache
 /server/connect.lock
 /server/coverage/*
@@ -45,6 +45,6 @@ npm-debug.log
 Thumbs.db
 
 /data
-/webapp/frontend/dist
-/webapp/docs/html
-/webapp/docs/reports
+/frontend/dist
+/docs/html
+/docs/reports

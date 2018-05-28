@@ -64,7 +64,6 @@ let requestParser = new NodeRequestParser(requestParserOptions);
  */
 router.post('/newData',passport.authenticate('jwt', { session: false}), (req, res, next) => {
     requestParser.parse(req, ['B*title', 'B*description?', 'B*image?', 'B*tags', 'A'], (err, data) => {
-
     if(!data) return next(new Error('login_required_data_missing_error'));
     console.log('user with id ' + data.authorization._id + ' called post /data.');
     if(data.authorization.state === 'RF') return res.status(403).json({success: false, message: 'only users can save new data for now'});

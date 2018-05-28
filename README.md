@@ -25,7 +25,7 @@ sha256 hash:
 To stop docker-compose started with `./start.sh` or `npm start` use `./stop.sh` or `npm run stop`.
 
 ## Development environment
-Start local MongoDB instance localhost:27017, go to /webapp directory and run `npm run nodemon-dev-server` to start the server and watch backend files and run `npm run build-watch` to watch the frontend files while developing.
+Start local MongoDB instance localhost:27017 and run `npm run nodemon-dev-server` to start the server and watch backend files and run `npm run build-watch` to watch the frontend files while developing.
 - Attention: DB creates a folder /data/db in directory of docker-compose file called to save states between container restarts!
 
 ## Test

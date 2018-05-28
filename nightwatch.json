@@ -14,8 +14,7 @@
     "port" : 4444,
     "cli_args" : {
       "webdriver.chrome.driver" : "node_modules/selenium-standalone/.selenium/chromedriver/2.37-x64-chromedriver",
-      "webdriver.gecko.driver" : "node_modules/selenium-standalone/.selenium/geckodriver/0.20.1-x64-geckodriver",
-      "webdriver.edge.driver" : ""
+      "webdriver.gecko.driver" : "node_modules/selenium-standalone/.selenium/geckodriver/0.20.1-x64-geckodriver"
     }
   },
 
@@ -40,12 +39,6 @@
     "chrome" : {
       "desiredCapabilities": {
         "browserName": "chrome"
-      }
-    },
-
-    "edge" : {
-      "desiredCapabilities": {
-        "browserName": "MicrosoftEdge"
       }
     }
   }
