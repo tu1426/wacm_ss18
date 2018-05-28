@@ -28,6 +28,19 @@ To stop docker-compose started with `./start.sh` or `npm start` use `./stop.sh` 
 Start local MongoDB instance localhost:27017, go to /webapp directory and run `npm run nodemon-dev-server` to start the server and watch backend files and run `npm run build-watch` to watch the frontend files while developing.
 - Attention: DB creates a folder /data/db in directory of docker-compose file called to save states between container restarts!
 
+## Test
+- Start local MongoDB instance localhost:27017 with docker compose (docker-compose-env.yml)
+- Run `npm run nodemon-dev-test-server`
+
+#### All tests
+- Run all tests with `npm test`
+
+#### Backend Unit
+- Run `npm run backend-test`
+
+#### E2E
+- Run `npm run e2e-test`
+
 ## Technology stack
 For this exercise we chose MondoDB for database purposes, Node.js for backend development and Vue.js for frontend development.
 
