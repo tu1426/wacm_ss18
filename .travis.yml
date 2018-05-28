@@ -4,6 +4,8 @@ node_js:
 cache:
   directories:
   - node_modules
+before_script:
+  - npm install --prefix webapp
 script:
   - npm run build --prefix webapp
   - npm test --prefix webapp
