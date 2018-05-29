@@ -34,9 +34,6 @@ before_script:
   - docker build -f Dockerfile.test -t dev-test-server-image . &
   - docker build -f Dockerfile.web -t web-server-image . &
   - sleep 180
-  - docker run -d --name dev-test-server-container --net="host" dev-test-server-image
-  - docker run -d --name web-server-container --net="host" web-server-image
-  - sleep 15
 
 script:
   - docker run -d --name dev-test-server-container --net="host" dev-test-server-image
