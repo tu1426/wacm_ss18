@@ -21,6 +21,9 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
+before_script:
+  - jdk_switcher use oraclejdk8
+
 script:
   - docker run -d --name mongodb -v data:/data -p 27017:27017  mongo:3.6.2
   - docker build -f Dockerfile.test -t dev-test-server-image . &
