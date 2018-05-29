@@ -1,6 +1,16 @@
+# TODO:
+- [  ] check if creating credentials for course admins is necessary (test if repo and travis are reachable with no account)
+- [  ] write unit/integration tests in /backend/spec/routes (only tests for endpoints because this are the only business logic methods, see template users.spec.js)
+- [  ] code coverage 90% (possibly less according to course admin)
+- [  ] write e2e tests with nightwatch in /e2e (see template basic.spec.js and watch constraints of course admin who said half of the tests -> only 3)
+- [  ] setup automatic deployment to instance on master branch push
+- [  ] setup automatic push of new docker image on master push
+
 # wacm_ss18
 - Home page / Frontend: ``https://localhost:8443``
 - Server api starts on ``https://localhost:8443/api``
+- Travis CI: `https://travis-ci.org/tu1426/wacm_ss18`
+- Repository `https://github.com/tu1426/wacm_ss18/`
 
 ## !!Attention!!
 - we were only 3 guys who implemented this exercise, Stefan Puhalo did not participate anymore
