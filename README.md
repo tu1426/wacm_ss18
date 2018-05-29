@@ -20,17 +20,18 @@ sha256 hash:
 `8747cdda2c1432082abbbdafa2169224b0b80fcda073736d0098fa565d0c2e01`
 
 ## Start webapp with local build
-`./start.sh` oder `npm start` oder `docker-compose -f docker-compose-local.yml up --build`.
+`npm start_local` oder `docker-compose -f docker-compose-local.yml up --build`.
 
-To stop docker-compose started with `./start.sh` or `npm start` use `./stop.sh` or `npm run stop`.
+To stop docker-compose started with `npm start_local` use or `npm run stop_local`.
 
 ## Development environment
 Start local MongoDB instance localhost:27017 and run `npm run nodemon-dev-server` to start the server and watch backend files and run `npm run build-watch` to watch the frontend files while developing.
 - Attention: DB creates a folder /data/db in directory of docker-compose file called to save states between container restarts!
 
 ## Test
-- Start local MongoDB instance localhost:27017 with docker compose (docker-compose-env.yml)
-- Run `npm run nodemon-dev-test-server`
+Starting tests localls
+- `npm run start_environment`
+- Run `npm run dev-test-server`
 
 #### All tests
 - Run all tests with `npm test`
