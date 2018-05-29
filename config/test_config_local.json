@@ -1,6 +1,7 @@
 {
   "port" : 8080,
   "secure_port" : 8443,
+  "mongo_host": "localhost",
   "mongo_port": 27017,
   "mongo_db_name": "wacmDBtest",
   "mongo_db_name_test": "wacmDBtest",

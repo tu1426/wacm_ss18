@@ -30,6 +30,8 @@ before_install:
 
 before_script:
   - jdk_switcher use oraclejdk8
+  - docker pull mongo:3.6.2
+  - docker pull node:carbon
 
 script:
   - docker run -d --name mongodb -v data:/data -p 27017:27017  mongo:3.6.2 &
