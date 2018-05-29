@@ -30,12 +30,26 @@ before_install:
 
 before_script:
   - jdk_switcher use oraclejdk8
-
-script:
   - docker run -d --name mongodb -v data:/data -p 27017:27017  mongo:3.6.2
   - docker build -f Dockerfile.test -t dev-test-server-image . &
+  - docker build -f Dockerfile.web -t web-server-image . &
   - sleep 180
   - docker run -d --name dev-test-server-container --net="host" dev-test-server-image
+  - docker run -d --name web-server-container --net="host" web-server-image
   - sleep 15
-  - docker exec dev-test-server-container sh -c "yarn run backend-test"
-  - npm run e2e-test
+
+jobs:
+  include:
+    - stage: mastertest
+      script: echo 'master'
+      if: branch = master
+    - stage: devtest
+      script: echo 'dev'
+      if: branch = dev
+    - stage: integration_test
+      script: docker exec dev-test-server-container sh -c "yarn run backend-test"
+    - stage: e2e_test
+      script: npm run e2e-test
+    - stage: deploy
+      if: branch = master
+      script: ./deploy

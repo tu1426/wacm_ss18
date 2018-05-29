@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start_local": "docker-compose -f docker-compose-local.yml up --build",
-    "stop_local": "docker-compose down",
+    "stop_local": "docker-compose -f docker-compose-local.yml down",
     "start_environment": "docker-compose -f docker-compose-env.yml up",
     "stop_environment": "docker-compose -f docker-compose-env.yml down",
     "test": "npm run backend-test && npm run e2e-test",
@@ -15,7 +15,7 @@
     "build-watch": "npx webpack --watch",
     "nodemon-server": "nodemon server.js",
     "nodemon-dev-server": "nodemon server.js -c ./config/dev_config.json",
-    "dev-test-server": "node server.js -c ./config/test_config_local.json",
+    "dev-test-server": "node server.js -c ./config/test_config.json",
     "create-docs": "./node_modules/.bin/jsdoc -c ./docs/jsdoc.conf -t ./node_modules/ink-docstrap/template -d ./docs/html"
   },
   "private": true,
