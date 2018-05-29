@@ -22,10 +22,10 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  - npm run start_environment &
+  - docker run --name mongodb -v data:/data -p 27017:27017  mongo:3.6.2
   - docker build -f Dockerfile.test -t dev-test-server-image . &
   - sleep 120
-  - docker run -d dev-test-server-image --name dev-test-server-container
+  - docker run --name dev-test-server-container --link mongodb:mongodb  dev-test-server-image
   - sleep 15
-  - docker exec dev-test-server-container yarn run backend-test
+  - docker exec dev-test-server-container sh -c "yarn run backend-test"
   - npm run e2e-test
