@@ -30,23 +30,12 @@ before_install:
 
 before_script:
   - jdk_switcher use oraclejdk8
-  - docker run -d --name mongodb -v data:/data -p 27017:27017  mongo:3.6.2
+  - docker pull mongo:3.6.2
+  - docker pull node:carbon
+  - docker run -d --name mongodb -v data:/data -p 27017:27017  mongo:3.6.2 &
   - docker build -f Dockerfile.test -t dev-test-server-image . &
   - docker build -f Dockerfile.web -t web-server-image . &
   - sleep 180
-
-script:
-  - docker run -d --name dev-test-server-container --net="host" dev-test-server-image
-  - sleep 15
-  - docker exec dev-test-server-container sh -c "yarn run backend-test"
-  - docker rm dev-test-server-container
-  - docker run -d --name web-server-container --net="host" web-server-image
-  - npm run e2e-test
-  - docker rm web-server-container
-
-deploy:
-  provider: script
-  script: echo 'deploy'
 
 stages:
   - test
@@ -54,12 +43,22 @@ stages:
   - devtest
   - deploy
 
-
 jobs:
   include:
+    - stage: test
+      script:
+        - docker run -d --name dev-test-server-container --net="host" dev-test-server-image
+        - sleep 15
+        - docker exec dev-test-server-container sh -c "yarn run backend-test"
+        - docker rm dev-test-server-container
+        - docker run -d --name web-server-container --net="host" web-server-image
+        - npm run e2e-test
+        - docker rm web-server-container
     - stage: mastertest
       script: echo 'master'
       if: branch = master
     - stage: devtest
       script: echo 'dev'
       if: branch = dev
+    - stage: deploy
+      script: echo 'deploy'
