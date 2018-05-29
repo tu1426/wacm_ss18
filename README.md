@@ -29,15 +29,15 @@ Start local MongoDB instance localhost:27017 and run `npm run nodemon-dev-server
 - Attention: DB creates a folder /data/db in directory of docker-compose file called to save states between container restarts!
 
 ## Test
-Starting tests localls
-- `npm run start_environment`
-- Run `npm run dev-test-server`
+Starting tests locally
+- Run `npm run start_environment` to start the database
+- Run `npm run dev-test-server-local`
 
 #### All tests
-- Run all tests with `npm test`
+- Run all tests with `npm test-local`
 
 #### Backend Unit
-- Run `npm run backend-test`
+- Run `npm run backend-test-local`
 
 #### E2E
 - Run `npm run e2e-test`

@@ -41,10 +41,12 @@ script:
   - docker run -d --name dev-test-server-container --link mongodb:mongodb dev-test-server-image
   - sleep 15
   - docker exec dev-test-server-container sh -c "TESTENV=remote yarn run backend-test"
+  - docker stop dev-test-server-container
   - docker rm dev-test-server-container
   - docker run -d --name web-server-container --link mongodb:mongodb web-server-image
   - sleep 15
   - npm run e2e-test
+  - docker stop web-server-container
   - docker rm web-server-container
 
 #deploy:
