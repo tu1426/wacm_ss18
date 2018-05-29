@@ -24,8 +24,8 @@ before_install:
 script:
   - docker run -d --name mongodb -v data:/data -p 27017:27017  mongo:3.6.2
   - docker build -f Dockerfile.test -t dev-test-server-image . &
-  - sleep 120
-  - docker run -d --name dev-test-server-container --link mongodb:mongodb  dev-test-server-image
+  - sleep 180
+  - docker run -d --name dev-test-server-container --net="host" dev-test-server-image
   - sleep 15
   - docker exec dev-test-server-container sh -c "yarn run backend-test"
   - npm run e2e-test

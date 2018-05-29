@@ -16,7 +16,7 @@
     "build-watch": "npx webpack --watch",
     "nodemon-server": "nodemon server.js",
     "nodemon-dev-server": "nodemon server.js -c ./config/dev_config.json",
-    "dev-test-server": "node server.js -c ./config/test_config.json",
+    "dev-test-server": "node server.js -c ./config/test_config_local.json",
     "create-docs": "./node_modules/.bin/jsdoc -c ./docs/jsdoc.conf -t ./node_modules/ink-docstrap/template -d ./docs/html"
   },
   "private": true,
