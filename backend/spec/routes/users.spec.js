@@ -3,7 +3,7 @@ let request = require('request'),
     urls = require('../../../config/urls'),
     CONFIG,
     fs = require("fs"),
-    User = require('../../models/user');
+    User = require('../../models/User');
 
 CONFIG = JSON.parse(fs.readFileSync(process.env['CONFIG_FILE']));
 

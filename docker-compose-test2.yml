@@ -3,7 +3,7 @@ services:
     unit-test:
         build:
           context: .
-          dockerfile: Dockerfile.test
+          dockerfile: Dockerfile.test2
         expose:
             - "8080"
             - "8443"

@@ -5,17 +5,17 @@ jasmine.getEnv().addReporter(new jasmine.ConsoleReporter(console.log));
 //jasmine.getEnv().addReporter(new jasmine.TapReporter());
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-process.env['CONFIG_FILE'] = './config/dev_config.json';
+process.env['CONFIG_FILE'] = './config/test_config.json';
 
-let User = require('../../models/user'),
-    Data = require('../../models/data'),
+let User = require('../../models/User'),
+    Data = require('../../models/Data'),
     request = require('request'),
     mongoose = require('mongoose'),
     fs = require("fs"),
     urls = require('../../../config/urls');
 
 mongoose.Promise = global.Promise;
-CONFIG = JSON.parse(fs.readFileSync('./config/dev_config.json'));
+CONFIG = JSON.parse(fs.readFileSync('./config/test_config.json'));
 
 //beforeEach with global scope
 beforeEach(function (done) {
