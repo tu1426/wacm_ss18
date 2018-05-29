@@ -23,7 +23,9 @@ before_install:
 
 script:
   - npm run start_environment &
+  - docker build -f Dockerfile.test -t dev-test-server-image . &
+  - sleep 120
+  - docker run -d dev-test-server-image --name dev-test-server-container
   - sleep 15
-  - npm run nodemon-dev-server &
-  - sleep 15
+  - docker exec dev-test-server-container yarn run backend-test
   - npm run e2e-test
