@@ -38,6 +38,26 @@ before_script:
   - docker run -d --name web-server-container --net="host" web-server-image
   - sleep 15
 
+script:
+  - docker run -d --name dev-test-server-container --net="host" dev-test-server-image
+  - sleep 15
+  - docker exec dev-test-server-container sh -c "yarn run backend-test"
+  - docker rm dev-test-server-container
+  - docker run -d --name web-server-container --net="host" web-server-image
+  - npm run e2e-test
+  - docker rm web-server-container
+
+deploy:
+  provider: script
+  script: echo 'deploy'
+
+stages:
+  - test
+  - mastertest
+  - devtest
+  - deploy
+
+
 jobs:
   include:
     - stage: mastertest
@@ -46,10 +66,3 @@ jobs:
     - stage: devtest
       script: echo 'dev'
       if: branch = dev
-    - stage: integration_test
-      script: docker exec dev-test-server-container sh -c "yarn run backend-test"
-    - stage: e2e_test
-      script: npm run e2e-test
-    - stage: deploy
-      if: branch = master
-      script: ./deploy
