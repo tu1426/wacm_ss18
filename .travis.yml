@@ -22,7 +22,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  - docker run --name mongodb -v data:/data -p 27017:27017  mongo:3.6.2
+  - docker run --name mongodb -v data:/data -p 27017:27017  mongo:3.6.2 &
   - docker build -f Dockerfile.test -t dev-test-server-image . &
   - sleep 120
   - docker run --name dev-test-server-container --link mongodb:mongodb  dev-test-server-image
