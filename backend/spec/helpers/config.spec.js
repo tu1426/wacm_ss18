@@ -19,7 +19,13 @@ CONFIG = JSON.parse(fs.readFileSync('./config/test_config.json'));
 
 //beforeEach with global scope
 beforeEach(function (done) {
-  mongoose.connect('mongodb://' + CONFIG.mongo_host + ':' + CONFIG.mongo_port + '/' + CONFIG.mongo_db_name_test);
+  let connectionString;
+  if(process.env.TESTENV === 'local'){
+    connectionString = 'mongodb://localhost:' + CONFIG.mongo_port + '/' + CONFIG.mongo_db_name_test;
+  } else{
+    connectionString = 'mongodb://mongodb:' + CONFIG.mongo_port + '/' + CONFIG.mongo_db_name_test;
+  }
+  mongoose.connect(connectionString);
 
 	//setup dev db before each test
 	setupTestData(function(err, isOkay){
