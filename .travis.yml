@@ -52,6 +52,7 @@ jobs:
         - docker exec dev-test-server-container sh -c "yarn run backend-test"
         - docker rm dev-test-server-container
         - docker run -d --name web-server-container --net="host" web-server-image
+        - sleep 15
         - npm run e2e-test
         - docker rm web-server-container
     - stage: mastertest
