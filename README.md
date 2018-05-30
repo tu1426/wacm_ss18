@@ -4,7 +4,7 @@
 - [  ] code coverage 90% (possibly less according to course admin)
 - [  ] write e2e tests with nightwatch in /e2e (see template basic.spec.js and watch constraints of course admin who said half of the tests -> only 3)
 - [  ] setup automatic deployment to instance on master branch push
-- [  ] setup automatic push of new docker image on master push
+- [ X ] setup automatic push of new docker image on master push
 
 # wacm_ss18
 - Home page / Frontend: ``https://localhost:8443``
@@ -27,7 +27,9 @@
 Maybe you have to call `docker-compose build` beforehand.
 
 sha256 hash: 
-`8747cdda2c1432082abbbdafa2169224b0b80fcda073736d0098fa565d0c2e01`
+`61f06d233b17c56589fc13409ef21b0788864513502f0ea224e95fae6e816b08`
+
+but its updating on every push to master!
 
 ## Start webapp with local build
 `npm start_local` oder `docker-compose -f docker-compose-local.yml up --build`.
