@@ -2,52 +2,52 @@ sudo: required
 dist: trusty
 language: node_js
 services:
-  - docker
+- docker
 node_js:
-  - '8'
+- '8'
 cache:
   directories:
-    - node_modules
+  - node_modules
 env:
   matrix:
   - DOCKER_COMPOSE_VERSION=1.21.1
   global:
   - secure: EJXEjgu6xIeKQJwDjj9FUxGlU31qpJVLXjBGSl4nsMhGyVh8p1rUc6LSssop6ZtstVY52w7svc8xpd0UcjgHbcELR1KvMiqYL2D1NbGv4tufVasLulYBZhWhp57g3IdAtum7gCs3Ib7QpHZeqTdAnE9hI+qpjaS9fN8ldEF2y9A4AO5WAC/L4MUpiUbyrby5xA4ucrBP7erx+9usgZmnaBAyTL7a3ogAw1uobPR7Pm34FJY/PYFUcCjLQ0crwvxEtpGqiIr7oqMkKbL1u79mX6PH1PHPbcrIeSlwVofQgbdCWeBpsLeAvIwG/cvsT4JwJMxAuFADy7oqmMahRfesYa0eHgQVj7MW1JilpqU4gI6FiCyY7V55iNa85QDvj23xPDIR9Yl5aTfJOdzYtXQazwTAi3K3uwTeqseBj+nBXC3R3yIM7sNkzdYx8OLYjANvZCWJhstmSbyQ4QluwU5uk7JfeIE4IPyHGxlN3PbZutwrvfEjjazeo/v1rKMDStg35sKf6zhTnaRIAFusxoQrOy/BLEULrP2hlan8CRyc91l2LsYIlt/PlEJtH0ALdyx3eRgz6l8HKyvXO9WvVvJjCgY8cpeqjzQvCqnKYgF4A33oWQN62SmLkPPdGVSRi3KaCTAuj5XGB+XMW9RFFHvUt/+qsMNjx/FZVYICD5Ji06U=
   - secure: Qm6uGCFenMAhrzTykaHg6fcQP67ZB/pvfmzEgLAvZnS0ObAQUIPvzVO0nJ9Ze+bAQ/9gVPS63BHOMe/+u8DP89Fo6+waeREVHE6FyhQNN65tPjjxns9p8m5zQs9T6jO2ppITbKXgXI9w/huallJrEpfcCAXjEnQmdRGlw4LaChIt2KYLHuHgaHPROJOPlBmROs2WuTcjnNW//wBiXaAjh+gPNtt2h4ZNQYMIR0/+X3li9eFU+zH8lRtR92yc28hMlEJVWXj4IDpd7azwhC0VdJ601pUNavxb9NBRWUVeGHO3hsZ2LslY+HVhMVuJp+jfQM2fQ0o+44Jnv5wGq63IYbmK7JR5D5EHT3KNtlqMuMeWMprkTOB02E1ikDeJmmTeUTEYR4Nf9UzYmXhlwzMQgwkN++PyS1xcIVZxK3gk44qeg60E5aYdngbqaAszOb3btaUviHIQxEienmStD1SQm3d9vHLmr6fF65CVg4MulDpL+LplKzkFyFhrFNpB+iTH4BCOgx91D5NV0FfRWqvnpCrSD6/Ch+F8p46OVweL+70FHyZiEmBFqg4ZAVUGs8L06jcC1rWVted+IWz/0BgtBeNYp7Oj3wI4FmpmClwEfR5J71+zYTScNYOZl2QJJVnvO7iEp5e3RSXmp1+id6/xWbGgTZq7HTJYS/btZMt20fA=
-  before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
-    -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  - export CHROME_BIN=/usr/bin/google-chrome
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sudo apt-get update
-  - sudo apt-get install -y libappindicator1 fonts-liberation
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome*.deb
-  before_script:
-  - jdk_switcher use oraclejdk8
-  - docker pull mongo:3.6.2
-  - docker pull node:carbon
-  - docker run -d --name mongodb -v data:/data -p 27017:27017  mongo:3.6.2 &
-  - docker build -f Dockerfile.test -t dev-test-server-image .
-  - docker build -f Dockerfile.web -t web-server-image .
-  script:
-  - docker run -d --name dev-test-server-container --link mongodb:mongodb dev-test-server-image
-  - sleep 15
-  - docker exec dev-test-server-container sh -c "TESTENV=remote yarn run backend-test"
-  - docker stop dev-test-server-container
-  - docker rm dev-test-server-container
-  - docker run -d --name web-server-container --link mongodb:mongodb web-server-image
-  - sleep 15
-  - npm run e2e-test
-  - docker stop web-server-container
-  - docker rm web-server-container
-  after_success:
-  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then docker build -f Dockerfile.web -t $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web
-    . docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ; docker push $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web
-    fi
+before_install:
+- sudo rm /usr/local/bin/docker-compose
+- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
+  -s`-`uname -m` > docker-compose
+- chmod +x docker-compose
+- sudo mv docker-compose /usr/local/bin
+- export CHROME_BIN=/usr/bin/google-chrome
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sudo apt-get update
+- sudo apt-get install -y libappindicator1 fonts-liberation
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
+before_script:
+- jdk_switcher use oraclejdk8
+- docker pull mongo:3.6.2
+- docker pull node:carbon
+- docker run -d --name mongodb -v data:/data -p 27017:27017  mongo:3.6.2 &
+- docker build -f Dockerfile.test -t dev-test-server-image .
+- docker build -f Dockerfile.web -t web-server-image .
+script:
+- docker run -d --name dev-test-server-container --link mongodb:mongodb dev-test-server-image
+- sleep 15
+- docker exec dev-test-server-container sh -c "TESTENV=remote yarn run backend-test"
+- docker stop dev-test-server-container
+- docker rm dev-test-server-container
+- docker run -d --name web-server-container --link mongodb:mongodb web-server-image
+- sleep 15
+- npm run e2e-test
+- docker stop web-server-container
+- docker rm web-server-container
+after_success:
+- if [[ "$TRAVIS_BRANCH" == "master" ]]; then docker build -f Dockerfile.web -t $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web
+  . docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ; docker push $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web
+  fi
 notifications:
   email: false
