@@ -46,7 +46,8 @@ script:
 - docker stop web-server-container
 - docker rm web-server-container
 after_success:
-- if [[ "$TRAVIS_BRANCH" == "master" ]]; then docker build -f Dockerfile.web -t $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web. ;
+- if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+    docker build -f Dockerfile.web -t $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web . ;
     docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
     docker push $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web ;
   fi
