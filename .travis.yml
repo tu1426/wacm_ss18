@@ -1,23 +1,23 @@
 sudo: required
 dist: trusty
 language: node_js
-
 services:
   - docker
-
 node_js:
-  - "8"
-
+  - '8'
 cache:
   directories:
-  - node_modules
-
+    - node_modules
 env:
+  matrix:
   - DOCKER_COMPOSE_VERSION=1.21.1
-
+  global:
+  - secure: BsKwY8Qxu5xLnPVPz8etH99zDGIDJyVjBJQHO888nv3FKXoEElbjWT2UHppyubiz7NkeQk0GHBDZ5eQrzHHQvG/Qypt3VN0wtTt8jMSYEusymJToFlsPG+N0/kUy/D+V+pCZ3XVnu1sutPY6n76qO3MVpRxjvkfVjmFT2r/zMtDG+JNmp2rVIX6J8G3wDWNCZ7q8Z819OZcggKBFHF1+DzhaQUh+S6Pb4IvyOZkNYefdKY7p71Y5lmDm6NckqZpMQj8fiMmifeLFLeiuYvteZ5JF+BNnYEHatcMJGMPQ1o8EonKYvoUG2+6PuNFLy+CbhoyG8udzCqA7u7vrA69M9pd5fi5s76E5p0RkL6vrhSe7nFYzP7pQy3GgjFNAY0nYf1Pg2QYbXHMM7PthgJp8Nb9JPv/1hz1c3yXRCVaQwvC4Fje/mgwGPvYwWPHOLWQ5/TAdzgRPkGrjKR3KDlw3Y/96gaiUh0GcvabOe92gdjfPgKkHxc1IkoostDA9/JTkWlCZ6otnCURuk707SGank4/6QEO5fZGR993c3N2Ji/XtU7Gqzc2LBME5N87Frupxs6v2UFwJOtC7oxI13tbjzW3w+7J7MyHnPx5YoHXPO2bWGR747GEC4zwHazHKkHs06lVji789aBr7j2/9QAZnl5YKi69o9kuvPWYMpLouQRk=
+  - secure: LJCQjxy4pzbXh7BCU91T3cug6mRxG2hN/MHEi3mf+DFP5Gu4HAKpBSuZDjWYRk9HZMoEbP5A6AF5QqQGnPMmnRjw5HhbFiHxf9EGt4Je8meJ4/zgo5l6S9ejpP9qkmP379Zsj68CsJGXeAqjvZ/Q3gEWYmaXMmeYrwfPv4oSrfXnNkCsZ3xwI5yB5OMsqC7eCg3LqBCdU05rgU2gxwOQML2H7ReBGB+gRx8X/jVkytao0hXMioHLFHnrpKwd4Rm+rzEKCdte3LPC95B3dAyCllp1FOqWAHtJYcgq/T9KoNIPBI8UhEFxeKDx6N1yXDP4KkY6Ek07FJ7lcMC08iNYrBe8h+ljbnD/qWSYcptGuDYUVI2EHvGIAEELmWSFfPncuJyolxL8hyrONwAkNKbXshhbCx87RZ5mwIE6kTQRTYqChgN8Urd/mz+dSKkEYiA2oYFcVJn6mbZTwL54f1FzGHluBjL+3mYvVjEZLQFEPsXCfTlwDi4v1SxeU5TsAlJVtMGwhnmZ6QOPcBZWHnec0yN6Jb0Drm8c4f6rfHRongb7yoDkD2tt9mch2Zfa0slccjJw1WyDuwIyz3olwmJUSKGGR8oeLn0Q0gR5z8gORrQlok3Ti7Jj94qwxMrvd0N1LffHORGBqu3PdLRH+8NZYaylfOZXzLRc9CQrOhF5M8w=
 before_install:
   - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
+    -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - export CHROME_BIN=/usr/bin/google-chrome
@@ -27,7 +27,6 @@ before_install:
   - sudo apt-get install -y libappindicator1 fonts-liberation
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - sudo dpkg -i google-chrome*.deb
-
 before_script:
   - jdk_switcher use oraclejdk8
   - docker pull mongo:3.6.2
@@ -35,7 +34,6 @@ before_script:
   - docker run -d --name mongodb -v data:/data -p 27017:27017  mongo:3.6.2 &
   - docker build -f Dockerfile.test -t dev-test-server-image .
   - docker build -f Dockerfile.web -t web-server-image .
-
 script:
   - docker run -d --name dev-test-server-container --link mongodb:mongodb dev-test-server-image
   - sleep 15
@@ -47,12 +45,10 @@ script:
   - npm run e2e-test
   - docker stop web-server-container
   - docker rm web-server-container
-
-#deploy:
- # provider: s3
- # access_key_id: "YOUR AWS ACCESS KEY"
- # secret_access_key: "YOUR AWS SECRET KEY"
- # bucket: "S3 Bucket"
- # skip_cleanup: true
- # on:
- #   branch: release
+after_success:
+  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+    docker build -f Dockerfile.web -t $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web .
+    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ; docker push $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web
+    fi
+notifications:
+  email: false
