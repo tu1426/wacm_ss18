@@ -1,6 +1,0 @@
-build:
-  docker:
-    web: Dockerfile.deploy
-
-
-#web:    docker run -d --name web-server-container tu1426/waecm-2018-group-13-bsp-3-web
