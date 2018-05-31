@@ -62,10 +62,7 @@ after_success:
     docker login --username $HEROKU_DOCKER_USERNAME --password $HEROKU_AUTH_TOKEN registry.heroku.com ;
     docker build -f Dockerfile.deploy -t registry.heroku.com/wacm-ss18/waecm-2018-group-13-bsp-3-web . ;
     docker push registry.heroku.com/wacm-ss18/waecm-2018-group-13-bsp-3-web ;
-    (
-    echo "$HEROKU_DOCKER_USERNAME"
-    echo "$HEROKU_DOCKER_PASSWORD"
-    ) | heroku login ;
+    printf "$HEROKU_DOCKER_USERNAME\n$HEROKU_DOCKER_PASSWORD\n" | heroku login ;
     heroku container:login ;
     heroku container:release waecm-2018-group-13-bsp-3-web ;
   fi
