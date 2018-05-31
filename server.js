@@ -61,7 +61,14 @@ app.use(cookieParser());
 
 // set env variable for mongo connection
 mongoose.Promise = global.Promise;
-let mongoConnectionString = 'mongodb://' + CONFIG.mongo_host + ':' + CONFIG.mongo_port + '/' + CONFIG.mongo_db_name;
+let mongoConnectionString;
+
+if(process.env['MONGO_USER'] && process.env['MONGO_PW']){
+  mongoConnectionString = 'mongodb://' + process.env['MONGO_USER'] + ':' + process.env['MONGO_PW'] + '@' + CONFIG.mongo_host + ':' + CONFIG.mongo_port + '/' + CONFIG.mongo_db_name
+} else{
+  mongoConnectionString = 'mongodb://' + CONFIG.mongo_host + ':' + CONFIG.mongo_port + '/' + CONFIG.mongo_db_name;
+}
+
 process.env['MONGO_CONNECTION_STRING'] = mongoConnectionString;
 
 //connect to database, use database events to catch errors and reconnect

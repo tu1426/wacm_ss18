@@ -17,6 +17,7 @@
     "e2e-test": "npm run e2e-setup && ./node_modules/.bin/nightwatch",
     "dev-test-server-local": "node server.js -c ./config/test_config_local.json",
 
+    "start_deploy": "npm run build && node server.js -c ./config/deploy_config.json",
     "test": "TESTENV=remote npm run backend-test && npm run e2e-test",
     "backend-test": "TESTENV=remote node ./node_modules/istanbul/lib/cli.js cover --include-all-sources --root ./backend ./node_modules/.bin/jasmine-node backend/spec --captureExceptions",
     "dev-test-server": "node server.js -c ./config/test_config.json",

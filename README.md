@@ -10,7 +10,8 @@
 - Home page / Frontend: ``https://localhost:8443``
 - Server api starts on ``https://localhost:8443/api``
 - Travis CI: `https://travis-ci.org/tu1426/wacm_ss18`
-- Repository `https://github.com/tu1426/wacm_ss18/`
+- Repository: `https://github.com/tu1426/wacm_ss18/`
+- Database: deployed on `35.233.103.19:27017`
 
 ## !!Attention!!
 - we were only 3 guys who implemented this exercise, Stefan Puhalo did not participate anymore
