@@ -59,9 +59,9 @@ after_success:
     docker build -f Dockerfile.web -t $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web . ;
     docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
     docker push $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web ;
-    docker login --username $HEROKU_DOCKER_USERNAME --password $HEROKU_AUTH_TOKEN registry.heroku.com ;
-    docker build -f Dockerfile.deploy -t registry.heroku.com/wacm-ss18/waecm-2018-group-13-bsp-3-web . ;
-    docker push registry.heroku.com/wacm-ss18/waecm-2018-group-13-bsp-3-web ;
+    #docker login --username $HEROKU_DOCKER_USERNAME --password $HEROKU_AUTH_TOKEN registry.heroku.com ;
+    #docker build -f Dockerfile.deploy -t registry.heroku.com/wacm-ss18/waecm-2018-group-13-bsp-3-web . ;
+    #docker push registry.heroku.com/wacm-ss18/waecm-2018-group-13-bsp-3-web ;
   fi
 notifications:
   email: false
