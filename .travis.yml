@@ -8,22 +8,14 @@ node_js:
 cache:
   directories:
   - node_modules
-  - "$HOME/google-cloud-sdk/"
 env:
   matrix:
   - DOCKER_COMPOSE_VERSION=1.21.1
   global:
   - secure: enaIpUDZYrPvDhgbXmweOuSrrS5WKCZFN+JyYAqWJLCG5rLpX4ElG2lpE8OOCFUUy1wkehq8Yn75hfK+5Lt+kXf5PSjWd+uKZGeipYUS1CuGfPqoQ1MGNwKayHFDFwz44oAfYmS4pdlu/mzK+aSLze/5DCx3b4f2rJIQNnrzP04f4TSPXsK7vO0GPlkbKLac8jfoq/cE1vtq1wmSyXp7yTL0DoXW1OWUeE5VJZ9a6MYx4SqTScSMAKMdNurKhWzi/8bKtyngFqd0DsnUYx7fxQOT9F42aHTPHnMfGET//QxdQNZhXQAM6v8GBoijFKP2i68qsYBNHnYkElYutfEc2BpeEdsy1Re+JzDf9iwZBi2URCLVVxxczOoFIjl8+E2BJKuQPA2sRtqWHwmRxkMchxEnDcC0pwZSELO+fV4GmTmkrYkvy6l3WSLIcL3F/iaWhfUTL5oCEsRCEc3Xy2jw88uyjN1Xn9eRpvMzXfW6O+mwG+JC3Ec8pza/XcAfwcQD4cYNayFirBGiK+bPuqmtMN8o0+Y41WubP509kKC4kOX73vheGM/cpHWgKiCSr5S0O7xAcmKgMXJ6hOFP+scesd2IIulPKgE6k0f/ht4faDLTg6Qr29vpOIF1rZ2+Iezo0HpGohwjGoDsFCz7Aa5TW1KweZSDhBwzqX0WW2Yq35o=
   - secure: cTQs1bjJuRqSlm0kmBUXe9mT/WFHq5GjHrVygXLtkqr99n/ZGMdCdk7EEn7Wyn+wOoRH4IeDnV3PdNaAs20S3UCWAfKrK1xwdx8nZpcM9ulVLtvH5MJD2W8bdwZnR5CJMhrlJoGUvnvdy4p5xJ8uasSWa5bfeaym+Vm4/Ne1Rl3DSkYmU2istVO31BPDFzLX3XLovBfwa82vMfZkLl18fvC3j7wA3sjJkjhDDYtHo5Ujsb/D+3KwQQO6ps4VZOHrspO/5cW6SHaatQgoZvAF+6xVPP+z5WoK2bjjIHKjzw77LtCtDgLndtxClZmaGX65Fupc7Sdb/5AOf5kiEA+w/QYhOaS+gFbTvAYvG4nh8Sq1oFJkXeNqmEKRXBLrOk1YvXluyyExoZ646H00hVwfg5KJNfLEb8sSKZ9yP1oIkumfKhHwi2AXoghTtH8Uo7iY6dfHu9ePW2IV1HFC0C53NztPWuucSKfzqMP+9VVks0MIRgjIT67YNxISutThFbCYG8qs2zx4rcsDJAqX5bThl0T2CG7kfwk2cM9LALoCWft8vN1wRuWDb++cRhNtIw1W5g+bf+v3GLJSGoVVqu6HDxfNsP5BJCsLQTtEBzUiq2asE5Oy9uOH2znSD506e8asBIaqZXxxuIhOssyXGtbwJCaSt+R6CxP08npmxc/VQkw=
-
-  - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
-  - PROJECT_NAME_PRD=wacmss18
-  - CLUSTER_NAME_PRD=wacm-cluster
-  - CLOUDSDK_COMPUTE_ZONE=europe-west1-b
-  - DOCKER_IMAGE_NAME=wacm_app
-  - KUBE_DEPLOYMENT_NAME=wacm_app
-  - KUBE_DEPLOYMENT_CONTAINER_NAME=wacm_app
-  - NODE_ENV=CI
+  - secure: UbqY5uHi1KSDzrR8zUlZW8BOZcoZ33e5tgk+kQ0Lhv4byDA0/Llidk7xWDmZ/nLlkozmBJb468BK0tr47UXn99lJrjaV4SaH5MaVrbols5YJruN2dmP7bV5UDMo0LtVMDP0xSjGcGVCRxBm38xVnsWDXfd/mm6hHgv9pC3O1+mLzgSrHRHG7njjPgEJu6WY5lVkYoQEYE1DRHsWIoPzGsSt/A6+dFqnhv7eN28DsYq8knn+urWxW0uyvOJSCL3D4mQhGMR4e6wjfS4hZho6yb1stJqV6pVqZgXSToaBOK5IOEjLkQMCWbmbOr1IboLM2vO6tyorz46dDxsTvLwmdByhFUQPQLmIaxWT87qgVkuEDK8Vj34C2XzV5NEisWgyg9PWiUdwCwNNG3746Hzfc2oRKEaRFNSpAj3Ot6MNaKs/62r/wg0He/k+g6iyHS2QBQ9bdyXbOe9AdoiJuvvIa3a1EZUoK6WM3jDsvVrLfnvLWoBnQUr8WUdNA01F7ryBBO8KPpvSdeplcCf8ffFqeWRvg0VW3/Uo65mOARphJNukNmD7z9Pd6E/pbbW/Eis3MAZYK3XRJqM+iJFmePVnW9iHn3FYRwIX8Plh2ANiPlz/7GNwafsb7foESLpB+ZFeWnmRQQ0xyW8qnE4XRDQF49OmaY4CTxb0aYpIfdBghBFE=
+  - secure: WJEgCQpO50GOrFOcRl+10R5i/+Xmg0BskImU2ymb04OcHZgvi+PPZrjGW2vT0O8zv6DNeP7hAWZmt3qBzgGC3zDorQwFu8BRxq4csWpBAZcDXHbHAgOQ4hfdIh3o0FLDnQ7r3uBUf4/5j4BjkJI+6GD/p+sNR/1lj54Ni9wWYObsFkYGJjrSYQ7CGM2a0v+HeUC2R6BluvE0P3cF6KyjDXy8+Nyr58bPFQ6P2tdVfm1ObSLOEgPnVPD8vZWiNT6tEF9TOaLWviIVfuOn7p0YZicSGo3pWxMYHyvERGCs4b22tRdyies4fqWekzuyAE6IM7CNgyYJ0IR70eeYPz1HiVzy2GBsQFl6N5hGPDpcg2vJlipA0D5iTcz6KSnrZbO1MZEhadluYTCBZG5Kl5BZKTMjU9ExvcKojrDc7XLJkOLxY8nVXRUZk/ABPGrNsg2ZuH8zl6bvECLSKOXQ6IheWAivWGaPP+r1XVSGrWfD5+j3SirNicZ7UlKIdvI/tAVhwCnJ0Ab+xDSfdzkD0NuWtHsLRJ+kJuZ68SljMD57QzYkWPm6H0bzb1bQemiBlJlenQJ5FbYCU/N0y+5kign+GaLIi2Ce59U1PGnMoRP9STsS/r9Y8x6UgINfu+ehwuuDxZhIZIrL8/GrJeqRIk/JchnP6FEIwnBQrdSHD4Sev2k=
 before_install:
 - sudo rm /usr/local/bin/docker-compose
 - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
@@ -57,26 +49,12 @@ script:
 - docker rm web-server-container
 after_success:
 - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-    docker build -f Dockerfile.deploy -t $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web . ;
+    docker build -f Dockerfile.web -t $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web . ;
     docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
     docker push $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web ;
+    docker login --username $HEROKU_DOCKER_USERNAME --password $HEROKU_AUTH_TOKEN registry.heroku.com ;
+    docker build -f Dockerfile.deploy -t registry.heroku.com/wacm-ss18/waecm-2018-group-13-bsp-3-web . ;
+    docker push registry.heroku.com/wacm-ss18/waecm-2018-group-13-bsp-3-web ;
   fi
-before_deploy:
-- if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
-    rm -rf $HOME/google-cloud-sdk ;
-    export CLOUDSDK_CORE_DISABLE_PROMPTS=1 ;
-    curl https://sdk.cloud.google.com | bash ;
-  fi
-- source /home/travis/google-cloud-sdk/path.bash.inc
-- gcloud --quiet version
-- gcloud --quiet components update
-- gcloud --quiet components beta update
-- gcloud --quiet components update kubectl
-deploy:
-  - provider: script
-    script: ./deploy-production.sh
-    skip_cleanup: true
-    on:
-      branch: master
 notifications:
   email: false
