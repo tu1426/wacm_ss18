@@ -131,13 +131,13 @@ const serverConfig = {
 
 // start servers
 http.createServer(app).listen(CONFIG.port);
-https.createServer(serverConfig, app).listen(CONFIG.secure_port);
+https.createServer(serverConfig, app).listen(process.env['PORT'] ? process.env['PORT'] : CONFIG.secure_port);
 
 function ensureSecure(req, res, next){
   if(req.secure){
     return next();
   }
-  res.redirect('https://'+req.hostname+':' + CONFIG.secure_port + req.url);
+  res.redirect('https://'+req.hostname+':' + process.env['PORT'] ? process.env['PORT'] + req.uri : CONFIG.secure_port + req.url);
 }
 
 
