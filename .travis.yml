@@ -15,11 +15,12 @@ env:
   global:
   - secure: enaIpUDZYrPvDhgbXmweOuSrrS5WKCZFN+JyYAqWJLCG5rLpX4ElG2lpE8OOCFUUy1wkehq8Yn75hfK+5Lt+kXf5PSjWd+uKZGeipYUS1CuGfPqoQ1MGNwKayHFDFwz44oAfYmS4pdlu/mzK+aSLze/5DCx3b4f2rJIQNnrzP04f4TSPXsK7vO0GPlkbKLac8jfoq/cE1vtq1wmSyXp7yTL0DoXW1OWUeE5VJZ9a6MYx4SqTScSMAKMdNurKhWzi/8bKtyngFqd0DsnUYx7fxQOT9F42aHTPHnMfGET//QxdQNZhXQAM6v8GBoijFKP2i68qsYBNHnYkElYutfEc2BpeEdsy1Re+JzDf9iwZBi2URCLVVxxczOoFIjl8+E2BJKuQPA2sRtqWHwmRxkMchxEnDcC0pwZSELO+fV4GmTmkrYkvy6l3WSLIcL3F/iaWhfUTL5oCEsRCEc3Xy2jw88uyjN1Xn9eRpvMzXfW6O+mwG+JC3Ec8pza/XcAfwcQD4cYNayFirBGiK+bPuqmtMN8o0+Y41WubP509kKC4kOX73vheGM/cpHWgKiCSr5S0O7xAcmKgMXJ6hOFP+scesd2IIulPKgE6k0f/ht4faDLTg6Qr29vpOIF1rZ2+Iezo0HpGohwjGoDsFCz7Aa5TW1KweZSDhBwzqX0WW2Yq35o=
   - secure: cTQs1bjJuRqSlm0kmBUXe9mT/WFHq5GjHrVygXLtkqr99n/ZGMdCdk7EEn7Wyn+wOoRH4IeDnV3PdNaAs20S3UCWAfKrK1xwdx8nZpcM9ulVLtvH5MJD2W8bdwZnR5CJMhrlJoGUvnvdy4p5xJ8uasSWa5bfeaym+Vm4/Ne1Rl3DSkYmU2istVO31BPDFzLX3XLovBfwa82vMfZkLl18fvC3j7wA3sjJkjhDDYtHo5Ujsb/D+3KwQQO6ps4VZOHrspO/5cW6SHaatQgoZvAF+6xVPP+z5WoK2bjjIHKjzw77LtCtDgLndtxClZmaGX65Fupc7Sdb/5AOf5kiEA+w/QYhOaS+gFbTvAYvG4nh8Sq1oFJkXeNqmEKRXBLrOk1YvXluyyExoZ646H00hVwfg5KJNfLEb8sSKZ9yP1oIkumfKhHwi2AXoghTtH8Uo7iY6dfHu9ePW2IV1HFC0C53NztPWuucSKfzqMP+9VVks0MIRgjIT67YNxISutThFbCYG8qs2zx4rcsDJAqX5bThl0T2CG7kfwk2cM9LALoCWft8vN1wRuWDb++cRhNtIw1W5g+bf+v3GLJSGoVVqu6HDxfNsP5BJCsLQTtEBzUiq2asE5Oy9uOH2znSD506e8asBIaqZXxxuIhOssyXGtbwJCaSt+R6CxP08npmxc/VQkw=
+
   - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
   - PROJECT_NAME_PRD=wacmss18
   - CLUSTER_NAME_PRD=wacm-cluster
   - CLOUDSDK_COMPUTE_ZONE=europe-west1-b
-  - DOCKER_IMAGE_NAME=tu1426/waecm-2018-group-13-bsp-3-web
+  - DOCKER_IMAGE_NAME=wacm_app
   - KUBE_DEPLOYMENT_NAME=wacm_app
   - KUBE_DEPLOYMENT_CONTAINER_NAME=wacm_app
   - NODE_ENV=CI
@@ -61,12 +62,16 @@ after_success:
     docker push $DOCKER_USERNAME/waecm-2018-group-13-bsp-3-web ;
   fi
 before_deploy:
-  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-  - source /home/travis/google-cloud-sdk/path.bash.inc
-  - gcloud --quiet version
-  - gcloud --quiet components update
-  - gcloud --quiet components beta update
-  - gcloud --quiet components update kubectl
+- if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
+    rm -rf $HOME/google-cloud-sdk ;
+    export CLOUDSDK_CORE_DISABLE_PROMPTS=1 ;
+    curl https://sdk.cloud.google.com | bash ;
+  fi
+- source /home/travis/google-cloud-sdk/path.bash.inc
+- gcloud --quiet version
+- gcloud --quiet components update
+- gcloud --quiet components beta update
+- gcloud --quiet components update kubectl
 deploy:
   - provider: script
     script: ./deploy-production.sh
