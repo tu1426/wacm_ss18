@@ -66,7 +66,8 @@ after_success:
     echo "$HEROKU_DOCKER_USERNAME"
     echo "$HEROKU_DOCKER_PASSWORD"
     ) | heroku login ;
-    heroku container:login ; heroku container:release waecm-2018-group-13-bsp-3-web;
+    heroku container:login ;
+    heroku container:release waecm-2018-group-13-bsp-3-web ;
   fi
 notifications:
   email: false
