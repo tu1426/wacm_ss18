@@ -1,5 +1,5 @@
 # TODO:
-- [  ] check if creating credentials for course admins is necessary (test if repo and travis are reachable with no account)
+- [ X ] check if creating credentials for course admins is necessary (test if repo and travis are reachable with no account)
 - [  ] write unit/integration tests in /backend/spec/routes (only tests for endpoints because this are the only business logic methods, see template users.spec.js)
 - [  ] code coverage 90% (possibly less according to course admin)
 - [ X ] write e2e tests with nightwatch in /e2e (see template basic.spec.js and watch constraints of course admin who said half of the tests -> only 3)
