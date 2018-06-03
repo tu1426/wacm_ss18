@@ -12,6 +12,7 @@
     "log_path" : "docs/reports",
     "host": "127.0.0.1",
     "port" : 4444,
+    "_comment": "xxxxxxxx",
     "cli_args" : {
       "webdriver.chrome.driver" : "node_modules/selenium-standalone/.selenium/chromedriver/2.37-x64-chromedriver",
       "webdriver.gecko.driver" : "node_modules/selenium-standalone/.selenium/geckodriver/0.20.1-x64-geckodriver"
@@ -32,14 +33,50 @@
         "browserName": "firefox",
         "marionette": true,
         "javascriptEnabled": true,
-        "acceptSslCerts": true
+        "acceptSslCerts": true,
+        "acceptInsecureCerts": true
       }
     },
 
-    "chrome" : {
+    "chrome-de": {
       "desiredCapabilities": {
-        "browserName": "chrome"
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "chromeOptions": {
+          "prefs": {
+            "intl.accept_languages":"de"
+          },
+          "args": [
+            "window-size=1920,1080",
+            "--no-sandbox"
+          ],
+          "binary": "node_modules/chromium/lib/chromium/chrome-linux/chrome"
+        }
+      }
+    },
+
+    "chrome-en": {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "chromeOptions": {
+          "prefs": {
+            "intl.accept_languages":"en"
+          },
+          "args": [
+            "window-size=1920,1080",
+            "--no-sandbox"
+          ],
+          "binary": "node_modules/chromium/lib/chromium/chrome-linux/chrome"
+        }
       }
     }
+
+
   }
 }
+
+
+
