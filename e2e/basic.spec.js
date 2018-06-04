@@ -9,6 +9,14 @@ module.exports = {
     client.end();
   },
 
+    'check title'(client) {
+        client
+            .url('https://localhost:8443')
+            .waitForElementVisible('body', 3000)
+            .verify.title('WACM_Group13');
+        client.end();
+    },
+
   'check if register available'(client) {
     client
       .url('https://localhost:8443/register')
