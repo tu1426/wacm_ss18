@@ -5,7 +5,6 @@ module.exports = {
             .pause(3000)
             .waitForElementVisible('body', 5000)
             .assert.urlContains('login')
-            .assert.title('WACM_Group13')
             .assert.elementPresent('BUTTON')
             .assert.containsText('body', 'Please log in!')
     },
