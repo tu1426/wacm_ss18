@@ -34,7 +34,9 @@
         "marionette": true,
         "javascriptEnabled": true,
         "acceptSslCerts": true,
-        "acceptInsecureCerts": true
+        "acceptInsecureCerts": true,
+        "headless": true
+
       }
     },
 
