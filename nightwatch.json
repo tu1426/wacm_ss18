@@ -35,7 +35,10 @@
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "acceptInsecureCerts": true,
-        "headless": true
+        "moz:firefoxOptions": {
+          "args": ["-headless"]
+        }
+
 
       }
     },
