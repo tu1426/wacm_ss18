@@ -49,7 +49,8 @@
           },
           "args": [
             "window-size=1920,1080",
-            "no-sandbox"
+            "no-sandbox",
+            "headless"
           ],
           "binary": "node_modules/chromium/lib/chromium/chrome-linux/chrome"
         }
