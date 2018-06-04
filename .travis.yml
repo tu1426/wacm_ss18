@@ -42,7 +42,7 @@ script:
 - docker rm dev-test-server-container
 - docker run -d --name web-server-container --link mongodb:mongodb web-server-image
 - sleep 15
-- npm run e2e-test
+- docker exec web-server-container sh -c "yarn run e2e-test"
 - docker stop web-server-container
 - docker rm web-server-container
 after_success:

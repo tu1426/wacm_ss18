@@ -38,8 +38,6 @@
         "moz:firefoxOptions": {
           "args": ["-headless"]
         }
-
-
       }
     },
 
