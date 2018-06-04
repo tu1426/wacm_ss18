@@ -2,7 +2,7 @@ module.exports = {
     'Landing Page': function (browser) {
         browser
             .url('https://localhost:8443/login')
-            .pause(5000)
+            .pause(9000)
             .waitForElementVisible('body', 5000)
             .assert.urlContains('login')
             .assert.containsText('body', 'Please log in!')
@@ -13,7 +13,7 @@ module.exports = {
             .setValue('input#usernameInput[type=text]', 'user')
             .setValue('input#passwordInput[type=password]', 'password')
             .click('button.btn.btn-primary')
-            .pause(5000)
+            .pause(9000)
             .assert.urlContains('home')
             .assert.containsText("body", "Welcome, you are logged in!")
     },
@@ -21,7 +21,7 @@ module.exports = {
     'Check german translation': function (browser) {
         browser
             .click('ul.nav.navbar-nav')
-            .pause(5000)
+            .pause(9000)
             .assert.containsText('body', 'Gesundheitsdaten')
             .end();
     }
