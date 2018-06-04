@@ -13,7 +13,7 @@
     "test-local": "npm run backend-test-local && npm run e2e-test",
     "backend-test-local": "TESTENV=local node ./node_modules/istanbul/lib/cli.js cover --include-all-sources --root ./backend ./node_modules/.bin/jasmine-node backend/spec --captureExceptions",
     "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
-    "e2e-test": "npm run e2e-setup && ./node_modules/.bin/nightwatch --env default --test ./e2e/basic.spec.js && ./node_modules/.bin/nightwatch --env chrome-en --test ./e2e/valid.login.js && ./node_modules/.bin/nightwatch --env chrome-de --test ./e2e/check.i18n.js",
+    "e2e-test": "npm run e2e-setup && ./node_modules/.bin/nightwatch --env default --test ./e2e/basic.spec.js && ./node_modules/.bin/nightwatch",
     "dev-test-server-local": "node server.js -c ./config/test_config_local.json",
     "test": "TESTENV=remote npm run backend-test && npm run e2e-test",
     "backend-test": "TESTENV=remote node ./node_modules/istanbul/lib/cli.js cover --include-all-sources --root ./backend ./node_modules/.bin/jasmine-node backend/spec --captureExceptions",
