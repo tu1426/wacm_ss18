@@ -5,7 +5,6 @@ module.exports = {
             .pause(5000)
             .waitForElementVisible('body', 5000)
             .assert.urlContains('login')
-            .assert.elementPresent('BUTTON')
             .assert.containsText('body', 'Please log in!')
     },
 
