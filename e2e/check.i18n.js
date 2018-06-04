@@ -1,6 +1,6 @@
 module.exports = {
-    'Landing Page': function (browser) {
-        browser
+    'Landing Page': function (client) {
+        client
             .url('https://localhost:8443/login')
             .pause(9000)
             .waitForElementVisible('body', 5000)
@@ -8,8 +8,8 @@ module.exports = {
             .assert.containsText('body', 'Please log in!')
     },
 
-    'A User can login': function (browser) {
-        browser
+    'A User can login': function (client) {
+        client
             .setValue('input#usernameInput[type=text]', 'user')
             .setValue('input#passwordInput[type=password]', 'password')
             .click('button.btn.btn-primary')
@@ -18,21 +18,13 @@ module.exports = {
             .assert.containsText("body", "Welcome, you are logged in!")
     },
 
-    'Check german translation': function (browser) {
-        browser
+    'Check german translation': function (client) {
+        client
             .click('ul.nav.navbar-nav')
             .pause(9000)
             .assert.containsText('body', 'Gesundheitsdaten')
             .end();
     }
-
-
-
-
-
-
-
-
 
 
 
