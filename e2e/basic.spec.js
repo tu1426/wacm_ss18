@@ -5,7 +5,6 @@ module.exports = {
       .url('https://localhost:8443')
       .waitForElementVisible('body', 3000)
       .expect.element('h1').to.be.present;
-    client.verify.title('WACM_Group13');
     client.end();
   },
 
