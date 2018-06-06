@@ -12,14 +12,13 @@
     "nodemon-dev-server": "nodemon server.js -c ./config/dev_config.json",
 
     "test-local": "npm run backend-test-local && npm run e2e-test",
-    "backend-test-local": "TESTENV=local node ./node_modules/istanbul/lib/cli.js cover --include-all-sources --root ./backend ./node_modules/.bin/jasmine-node backend/spec --captureExceptions",
+    "backend-test-local": "TESTENV=local node ./node_modules/istanbul/lib/cli.js cover --root ./backend ./node_modules/.bin/jasmine-node backend/spec --captureExceptions",
     "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
-    "e2e-test": "npm run e2e-setup && ./node_modules/.bin/nightwatch",
+    "e2e-test": "npm run e2e-setup && ./node_modules/.bin/nightwatch ./e2e/basic.spec.js",
     "dev-test-server-local": "node server.js -c ./config/test_config_local.json",
 
-    "start_deploy": "npm run build && node server.js -c ./config/deploy_config.json",
     "test": "TESTENV=remote npm run backend-test && npm run e2e-test",
-    "backend-test": "TESTENV=remote node ./node_modules/istanbul/lib/cli.js cover --include-all-sources --root ./backend ./node_modules/.bin/jasmine-node backend/spec --captureExceptions",
+    "backend-test": "TESTENV=remote node ./node_modules/istanbul/lib/cli.js cover --root ./backend ./node_modules/.bin/jasmine-node backend/spec --captureExceptions",
     "dev-test-server": "node server.js -c ./config/test_config.json",
     "create-docs": "./node_modules/.bin/jsdoc -c ./docs/jsdoc.conf -t ./node_modules/ink-docstrap/template -d ./docs/html"
   },
