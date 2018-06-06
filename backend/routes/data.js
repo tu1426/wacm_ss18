@@ -84,8 +84,6 @@ router.post('/newData',passport.authenticate('jwt', { session: false}), (req, re
 
 });
 
-
-// TODO: implement saving of user specific data here, user id is data.authorization._id
 });
 
 /**
@@ -102,7 +100,6 @@ router.get('/data', passport.authenticate('jwt', { session: false}),(req, res, n
         if(!data) return next(new Error('login_required_data_missing_error'));
         console.log('user with id ' + data.authorization._id + ' called get /data.');
         if(data.authorization.state === 'RF') return res.status(403).json({success: false, message: 'only users can get data for now'});
-        // TODO: implement getting of user specific data here, look up data for user with id data.authorization._id
 
         Data.find({user_id: data.authorization._id}, function(err, data){
             if(err || !data){

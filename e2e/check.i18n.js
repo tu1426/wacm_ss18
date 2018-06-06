@@ -24,7 +24,7 @@ module.exports = {
         client
             .click('ul.nav.navbar-nav')
             .pause(3000)
-            .verify.containsText('body', 'Health data')
+            .verify.containsText('body', 'Healthbook')
             .end();
     }
 

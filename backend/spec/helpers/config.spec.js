@@ -120,9 +120,9 @@ setupTestData = function(callback){
 };
 
 login = function(username, password, callback){
-  let body = JSON.stringify({ 'username': username, 'password' : getEncodedPassword(password)});
+  let body = JSON.stringify({ 'username': username, 'password' : password});
   let options = {
-    url: urls.base_url + urls.user_url + '/login',
+    url: 'https://' + CONFIG.test_host + ':' + CONFIG.secure_port + urls.api + urls.user + urls.user_login,
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -135,8 +135,8 @@ login = function(username, password, callback){
       callback(err, null);
     } else{
       let info = JSON.parse(body);
-      if(!info.user) console.log(info);
-      callback(null, info.user.token, info.user);
+      if(!info.jwt) console.error(info);
+      callback(null, info.jwt, info.email);
     }
   });
 };
