@@ -10,13 +10,11 @@
     "build": "npx webpack",
     "build-watch": "npx webpack --watch",
     "nodemon-dev-server": "nodemon server.js -c ./config/dev_config.json",
-
     "test-local": "npm run backend-test-local && npm run e2e-test",
     "backend-test-local": "TESTENV=local node ./node_modules/istanbul/lib/cli.js cover --root ./backend ./node_modules/.bin/jasmine-node backend/spec --captureExceptions",
     "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
     "e2e-test": "npm run e2e-setup && ./node_modules/.bin/nightwatch ./e2e/basic.spec.js",
     "dev-test-server-local": "node server.js -c ./config/test_config_local.json",
-
     "test": "TESTENV=remote npm run backend-test && npm run e2e-test",
     "backend-test": "TESTENV=remote node ./node_modules/istanbul/lib/cli.js cover --root ./backend ./node_modules/.bin/jasmine-node backend/spec --captureExceptions",
     "dev-test-server": "node server.js -c ./config/test_config.json",
@@ -62,6 +60,7 @@
     "babel-preset-stage-3": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "css-loader": "^0.28.9",
+    "chromium": "^1.0.2",
     "file-loader": "^1.1.6",
     "jasmine-core": "^2.99.1",
     "jasmine-node": "^1.14.5",

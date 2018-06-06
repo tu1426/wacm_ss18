@@ -1,16 +1,13 @@
-# TODO:
-- [  ] setup automatic deployment to instance on master branch push
-
 # wacm_ss18
 - Home page / Frontend: ``https://localhost:8443``
 - Server api starts on ``https://localhost:8443/api``
 - Travis CI: `https://travis-ci.org/tu1426/wacm_ss18`
 - Repository: `https://github.com/tu1426/wacm_ss18/`
-- Database: deployed on `35.233.103.19:27017`
+- Docker Image: `https://hub.docker.com/r/tu1426/waecm-2018-group-13-bsp-3-web`
 
 ## !!Attention!!
 - we were only 3 guys who implemented this exercise, Stefan Puhalo did not participate anymore
-- Task B done in file ``/WACM_GROUP13_Healthbook_ConceptsV2.pdf``
+- Report is done in file ``/WACM_GROUP13_Report_UE3.pdf``
 - Api documentation available when opening ``/docs/html/index.html`` in a browser
 - A research facility can be registered via the frontend ui, but has to be enabled in the database before login (set isEnabled flag to true), but two of them are already saved (local mounted directory) with logins:
     - email: ``one@rf.com`` passwd: ``oneoneone``
